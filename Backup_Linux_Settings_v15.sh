@@ -28,7 +28,10 @@
 ##############################################################################################################################################
 ##############################################################################################################################################
 
-destination="/media/Daten/Linux_Backup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+#destination="/media/tiago/500GB/Backup/LinuxMintSettings/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+#destination="/media/tiago/LINUXDEEPIN/MintBackup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+destination="/media/tiago/Rapidin/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+#destination="/media/tiago/LINUXDEEPIN/MintBackup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 											# Please don't make the mistake to backup into the same partition you will install the new Linux version later on.
 ##############################################################################################################################################
 ##############################################################################################################################################
@@ -109,7 +112,15 @@ version=$(lsb_release -d | sed -n 's/Description:[\t]//p' | tr " " _)
 Date=""_"`date +"%Y%m%d"`"
 ArchiveFormat=".tar"
 CompressionFormat1=".7zip"
-compression_rate="2" # smaller values --> larger file size but faster
+# x=[0 | 1 | 3 | 5 | 7 | 9 ]	5	Sets level of compression.
+# Level	Method	Dictionary	FastBytes	MatchFinder	Filter	Description
+# 0	Copy					No compression.
+# 1	LZMA	64 KB	32	HC4	BCJ	Fastest compressing
+# 3	LZMA	1 MB	32	HC4	BCJ	Fast compressing
+# 5	LZMA	16 MB	32	BT4	BCJ	Normal compressing
+# 7	LZMA	32 MB	64	BT4	BCJ	Maximum compressing
+# 9	LZMA	64 MB	64	BT4	BCJ2	Ultra compressing
+compression_rate="0" # smaller values --> larger file size but faster
 bold=`tput bold`
 normal=`tput sgr0`
 echo "#########################################################"
@@ -155,11 +166,8 @@ echo ""
 echo "Compressing the generated *.tar file to 7zip (this can take a while):"
 sleep 1
 echo ""
-echo "${bold}Since the backup can contain confidential information, we will now encrypt the backup.${normal}"
-echo "Please chose a password you can remember or leave the password blank if you don't want password protection."
-echo ""
 sleep 1
-7za u -p -mx=$compression_rate "$destination$version$Date$ArchiveFormat$CompressionFormat1" "$destination$version$Date$ArchiveFormat"
+7za u -mx=$compression_rate "$destination$version$Date$ArchiveFormat$CompressionFormat1" "$destination$version$Date$ArchiveFormat"
 echo "Compression is finished."
 echo "Deleting the temporary folder for storing software lists."
 sleep 1
