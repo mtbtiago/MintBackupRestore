@@ -138,7 +138,7 @@ echo ""
 echo "Backing up home folder of current Linux distribution, while preserving all owners and rights."
 sleep 3
 mkdir -p $destination
-tar -upvf "$destination$version$Date$ArchiveFormat" /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract inArchiveFormation about file permissions, v=verbosely list files processed, z=filter the archive through gzip   
+tar -upvf "$destination$version$Date$ArchiveFormat" --exclude-caches /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract inArchiveFormation about file permissions, v=verbosely list files processed, z=filter the archive through gzip   
 echo "Backed up your home folder of Linux. This can become important when installing a new release of Linux Mint (restore personal settings)"
 sleep 1
 echo "Now backing up your etc-settings (all of them)"
