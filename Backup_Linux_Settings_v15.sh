@@ -30,7 +30,7 @@
 
 #destination="/media/tiago/500GB/Backup/LinuxMintSettings/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 #destination="/media/tiago/LINUXDEEPIN/MintBackup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
-destination="/media/tiago/Rapidin/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+destination="/media/tiago/Rapidin1/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 #destination="/media/tiago/LINUXDEEPIN/MintBackup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 											# Please don't make the mistake to backup into the same partition you will install the new Linux version later on.
 ##############################################################################################################################################
