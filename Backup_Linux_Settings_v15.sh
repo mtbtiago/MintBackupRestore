@@ -30,7 +30,7 @@
 
 #destination="/media/tiago/500GB/Backup/LinuxMintSettings/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 #destination="/media/tiago/LINUXDEEPIN/MintBackup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
-destination="/media/tiago/Rapidin1/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+destination="/media/tiago/Rapidin/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 #destination="/media/tiago/LINUXDEEPIN/MintBackup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 											# Please don't make the mistake to backup into the same partition you will install the new Linux version later on.
 ##############################################################################################################################################
@@ -47,7 +47,7 @@ fi
 ##check if all packages are available to run this script:
 echo "Checking if necessary packages are available on your PC to run this script:"
 echo ""
-	
+
 dpkg -l apt > /dev/null 2>&1
 INSTALLED=$?
 if [ $INSTALLED == '0' ]; then
@@ -64,7 +64,7 @@ fi
 
 dpkg -l p7zip > /dev/null 2>&1
 INSTALLED=$?
-if [ $INSTALLED == '0' ]; then	
+if [ $INSTALLED == '0' ]; then
 		echo "+ 7zip compression is installed on your system (7za command available) --> OK"
 else
 		echo ""
@@ -127,7 +127,7 @@ echo "#########################################################"
 echo "This is Version 13 of the Backup Script"
 echo "#########################################################"
 echo "${bold}NEW:${normal} uses *.tar.7zip backup archive."
-echo "This is only compatible with restore script version 10 or higher." 
+echo "This is only compatible with restore script version 10 or higher."
 echo "#########################################################"
 echo "#########################################################"
 echo "Detected Linux Version:"
@@ -138,7 +138,7 @@ echo ""
 echo "Backing up home folder of current Linux distribution, while preserving all owners and rights."
 sleep 3
 mkdir -p $destination
-tar -upvf "$destination$version$Date$ArchiveFormat" --exclude-caches /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract inArchiveFormation about file permissions, v=verbosely list files processed, z=filter the archive through gzip   
+tar -upvf "$destination$version$Date$ArchiveFormat" --exclude-caches /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract inArchiveFormation about file permissions, v=verbosely list files processed, z=filter the archive through gzip
 echo "Backed up your home folder of Linux. This can become important when installing a new release of Linux Mint (restore personal settings)"
 sleep 1
 echo "Now backing up your etc-settings (all of them)"
@@ -177,7 +177,7 @@ sleep 1
 rm "$destination$version$Date$ArchiveFormat"
 echo "Backup script has finished."
 echo "If there were no errors, you can now find a *.tar.7zip-file in the folder $destination that includes all your backed up information."
-echo "Have a nice day." 
+echo "Have a nice day."
 read -p "Press any key to continue... " -n1 -s
 
 ################################################################################################################
@@ -186,5 +186,3 @@ read -p "Press any key to continue... " -n1 -s
 #rsync -auv --log-file=/home/user/$(date +%Y%m%d)_rsync.log --progress /media/Daten/ /media/Backup
 #echo "Backup script has finished. Have a nice day."
 #read -p "Press any key to continue... " -n1 -s
-
-

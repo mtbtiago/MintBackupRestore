@@ -28,7 +28,7 @@
 ##############################################################################################################################################
 ##############################################################################################################################################
 
-destination="/media/Daten/Linux_Backup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+destination="/media/tiago/SSD180/katana_backup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 											# Please don't make the mistake to backup into the same partition you will install the new Linux version later on.
 ##############################################################################################################################################
 ##############################################################################################################################################
@@ -64,7 +64,7 @@ fi
 ##check if all packages are available to run this script:
 echo "Checking if necessary packages are available on your PC to run this script:"
 echo ""
-	
+
 dpkg -l apt > /dev/null 2>&1
 INSTALLED=$?
 if [ $INSTALLED == '0' ]; then
@@ -81,7 +81,7 @@ fi
 
 dpkg -l p7zip > /dev/null 2>&1
 INSTALLED=$?
-if [ $INSTALLED == '0' ]; then	
+if [ $INSTALLED == '0' ]; then
 		echo -e "+ 7zip compression is installed on your system (7za command available) --> ${Green}OK${Color_Off}"
 else
 		echo ""
@@ -129,12 +129,12 @@ version=$(lsb_release -d | sed -n 's/Description:[\t]//p' | tr " " _)
 Date=""_"`date +"%Y%m%d"`"
 ArchiveFormat=".tar"
 CompressionFormat1=".7zip"
-compression_rate="2" # smaller values --> larger file size but faster
+compression_rate="0" # smaller values --> larger file size but faster
 echo "#########################################################"
 echo -e "${BWhite}This is Version 16 of the Backup Script${Color_Off}"
 echo "#########################################################"
 echo -e "${BGreen}NEW:${Color_Off} uses *.tar.7zip backup archive."
-echo "This is only compatible with restore script version 10 or higher." 
+echo "This is only compatible with restore script version 10 or higher."
 echo "#########################################################"
 echo "#########################################################"
 echo "Detected Linux Version:"
@@ -145,7 +145,7 @@ echo ""
 echo "Backing up home folder of current Linux distribution, while preserving all owners and rights."
 sleep 3
 mkdir -p $destination
-tar -upvf "$destination$version$Date$ArchiveFormat" /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract information about file permissions, v=verbosely list files processed, z=filter the archive through gzip   
+tar --exclude='/home/tiago/vmware' --exclude='/home/tiago/Downloads' --exclude='/home/tiago/tmp' -upvf "$destination$version$Date$ArchiveFormat" /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract information about file permissions, v=verbosely list files processed, z=filter the archive through gzip
 echo "Backed up your home folder of Linux. This can become important when installing a new release of Linux Mint (restore personal settings)"
 sleep 1
 echo "Now backing up your etc-settings (all of them)"
@@ -187,14 +187,12 @@ sleep 1
 rm "$destination$version$Date$ArchiveFormat"
 echo "Backup script has finished."
 echo -e "If there were no errors, you can now find a file named ${BGreen}>>$version$Date$ArchiveFormat$CompressionFormat1<<${Color_Off} in the folder ${BGreen}$destination${Color_Off} that includes all your backed up information."
-echo "Have a nice day." 
+echo "Have a nice day."
 read -p "Press any key to exit the backup script. " -n1 -s
-echo "" 
+echo ""
 ################################################################################################################
 ################################################################################################################
 #echo "backing up the >>Daten drive<< to the >>Backup drive<<"
 #rsync -auv --log-file=/home/user/$(date +%Y%m%d)_rsync.log --progress /media/Daten/ /media/Backup
 #echo "Backup script has finished. Have a nice day."
 #read -p "Press any key to continue... " -n1 -s
-
-
