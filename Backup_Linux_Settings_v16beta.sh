@@ -28,7 +28,7 @@
 ##############################################################################################################################################
 ##############################################################################################################################################
 
-destination="/media/tiago/SSD180/katana_backup/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
+destination="/media/tiago/toshiba_ext/tiago/katana/" 	# determines the destination folder were the backup will be stored. This is the only variable you should edit if you are not a advanced user.
 											# Please don't make the mistake to backup into the same partition you will install the new Linux version later on.
 ##############################################################################################################################################
 ##############################################################################################################################################
@@ -145,7 +145,7 @@ echo ""
 echo "Backing up home folder of current Linux distribution, while preserving all owners and rights."
 sleep 3
 mkdir -p $destination
-tar --exclude='/home/tiago/vmware' --exclude='/home/tiago/Downloads' --exclude='/home/tiago/tmp' -upvf "$destination$version$Date$ArchiveFormat" /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract information about file permissions, v=verbosely list files processed, z=filter the archive through gzip
+tar --exclude='/home/tiago/vmware' --exclude='/home/tiago/courses' --exclude='/home/tiago/videos' --exclude='/home/tiago/Downloads' --exclude='/home/tiago/tmp' -upvf "$destination$version$Date$ArchiveFormat" /home/ # c=create a new archive, f=use archive file or device ARCHIVE, u=only append files newer than copy in archive, p=extract information about file permissions, v=verbosely list files processed, z=filter the archive through gzip
 echo "Backed up your home folder of Linux. This can become important when installing a new release of Linux Mint (restore personal settings)"
 sleep 1
 echo "Now backing up your etc-settings (all of them)"
